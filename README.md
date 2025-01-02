@@ -17,6 +17,10 @@ chmod +x init.sh
 docker-compose up airflow-init 
 docker-compose up -d
 ```
+:::tip
+Если установлен docker-compose-plugin, то следует использовать команды синтаксиса `docker compose ...`.
+Для проверки версии docker-compose или docker-compose-plugin выполните: `apt list --installed | grep compose`
+:::
 
 ### Пререквизиты для запуска DAG-а
 DAG `bitcoin_to_clickhouse.py` предназначен получения данных по API и сохранения результатов в облачном инстансе Clickhouse YC.
