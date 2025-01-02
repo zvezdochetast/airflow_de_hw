@@ -1,4 +1,4 @@
-# Template airflow instance in Yandex Cloud VM.
+# Template airflow for Yandex Cloud VM.
 
 Шаблон предназначен для разворачивания инстанса airflow и запуска DAG-а в Yandex Cloud.
 
@@ -8,20 +8,22 @@
 
 ### Развертывание 
 1. Подключиться к VM по ssh
-2. ``` 
-git clone https://github.com/zvezdochetast/airflow-de-hw.git 
+2. Запустить команды:
+``` 
+git clone https://github.com/zvezdochetast/airflow_de_hw.git
+cd airflow_de_hw
 chmod +x init.sh 
 ./init.sh
 docker-compose up airflow-init 
-docker-compose up -d ```
-
+docker-compose up -d
+```
 
 ### Пререквизиты для запуска DAG-а
 DAG `bitcoin_to_clickhouse.py` предназначен получения данных по API и сохранения результатов в облачном инстансе Clickhouse YC.
 Концептуальная схема Dag-a: 
-- отправить запрос в API;
+- отправить запрос в API на конечную точку `https://api.coincap.io/v2/rates/bitcoin`;
 - распарсить пришедший результат;
-- положить данные в БД через insert в таблицу.
+- положить данные в БД через insert в таблицу `Analytics`.
 
 3. Для запуска DAG-а установлен облачный инстанс БД Clickhouse в Yandex Cloud, в котором создана таблица `Analytics`:
 ```sql
